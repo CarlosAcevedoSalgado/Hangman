@@ -4,3 +4,7 @@ id,date_made,claim,probability,evidence_tier,due_date,outcome,brier_score,notes
 3,2026-09-29,A problem with >=3 of 15 interviewees committing to a paid pilot is found by 2026-11-13,0.35,D,2026-11-13,,,
 4,2026-09-29,First paid concierge pilot (any amount) by 2026-12-31,0.30,D,2026-12-31,,,
 5,2026-09-29,$1M annual revenue run-rate by 2029-09-29,0.05,E,2029-09-29,,,speculative prior; revise after pilots
+6,2026-09-29,Median Spanish review time <=8 min/page over first 30 AI-pipeline orders,0.60,D,2026-11-30,,,load-bearing assumption of the $10 model
+7,2026-09-29,$10/page channel produces >=2.5x page volume of $25 baseline by week 8,0.30,D,2026-12-15,,,
+8,2026-09-29,Ace Translate reaches $10k/month revenue by 2027-06-30,0.20,D,2027-06-30,,,demand is the constraint
+9,2026-09-29,150+ pages/month without paid ads by 2027-03-31,0.35,D,2027-03-31,,,
