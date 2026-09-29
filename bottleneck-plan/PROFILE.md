@@ -30,3 +30,4 @@
 | 2026-09-29 | File created | — | First planning session; many variables unknown |
 | 2026-09-29 | Focus | Discovery sprint → Ace Translate | Carlos chose to build on existing translation business |
 | 2026-09-29 | Pricing idea | $25/page → proposes $10 then $5 | Volume strategy; to be tested on one channel |
+| 2026-09-29 | Strategy | Price cut to $10 → keep $25, compete on 1-hour speed + trust | Carlos accepted pushback |

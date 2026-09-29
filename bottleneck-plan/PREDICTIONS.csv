@@ -8,3 +8,6 @@ id,date_made,claim,probability,evidence_tier,due_date,outcome,brier_score,notes
 7,2026-09-29,$10/page channel produces >=2.5x page volume of $25 baseline by week 8,0.30,D,2026-12-15,,,
 8,2026-09-29,Ace Translate reaches $10k/month revenue by 2027-06-30,0.20,D,2027-06-30,,,demand is the constraint
 9,2026-09-29,150+ pages/month without paid ads by 2027-03-31,0.35,D,2027-03-31,,,
+10,2026-09-29,Median review time <=60 s/page for top templated doc types after field-crop fast review + template library ships,0.60,D,2027-03-31,,,
+11,2026-09-29,Median review time <=5 s/page reliably (any doc type mix),0.15,E,2027-03-31,,,
+12,2026-09-29,>=90% of orders delivered within 1 hour during staffed hours by 2027-03-31,0.45,D,2027-03-31,,,
