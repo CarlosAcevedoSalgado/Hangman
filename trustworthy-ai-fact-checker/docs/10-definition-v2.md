@@ -41,3 +41,23 @@ fraud is detected (ACFE, *Report to the Nations*), so a safe flag channel belong
 - **Independence:** if the company pays us, how are we an independent checker of its CEO? (Enron / Arthur Andersen; Sarbanes-Oxley Title II)
 - How votes work for a city-wide fund pooled across companies
 - First customer: whole company or one department/plant
+
+## Decisions from session 4
+
+- **Goal fixed, method flexible** ("commander's intent"): the tool tracks goal changes and
+  method changes separately, and records the reason for each method change.
+- **Promise to customers:** "we check whether stated reasons are backed by evidence", never "we catch liars".
+- **Model inside one company (settled):** propose → check → vote on the plan (decides use of the
+  gains slice) → leadership approves, doers get yes/no on their items → everyone commits →
+  track → share by the formula locked before the vote.
+- **Anonymous flag** goes into Truth v1 (Carlos's workplace has none; SOX §301 requires one for public companies).
+- **Design before launch:** fear of speaking up, gaming the numbers. **Fix as they appear:** free-riding, vote fatigue.
+- **First customer:** a whole company (recommended: 100–500 employees, owner-led, Louisville).
+- **Parked:** voting rules for a city-wide fund pooled across companies.
+
+## Still open (session 5)
+
+- Payment vs. independence: Carlos proposed a profit share; auditors are barred from contingent
+  fees (AICPA ET 1.510; SEC 17 CFR 210.2-01(c)(5)). Options: flat fee for checking with the
+  profit share measured by a third party, and/or fully published, re-runnable checks.
+- First test at Carlos's own workplace vs. an outside company.
