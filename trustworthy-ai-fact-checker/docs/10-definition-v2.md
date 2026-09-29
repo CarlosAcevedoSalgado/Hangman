@@ -61,3 +61,22 @@ fraud is detected (ACFE, *Report to the Nations*), so a safe flag channel belong
   fees (AICPA ET 1.510; SEC 17 CFR 210.2-01(c)(5)). Options: flat fee for checking with the
   profit share measured by a third party, and/or fully published, re-runnable checks.
 - First test at Carlos's own workplace vs. an outside company.
+
+## Decisions from session 5
+
+- **Payment:** flat fee for checking **plus** open, re-runnable checks. No profit share tied to results.
+  Strategy: drive delivery cost down with cheap AI and charge less, while spending visibly on trust signals.
+- **False flags:** a flag is a claim, not a verdict. Same evidence check, no action on a flag alone,
+  the accused sees and answers the evidence, human review before any finding about a person, tamper-evident log,
+  knowingly false reports are a violation (ISO 37002:2021).
+- **Threats:** solve all known threats before launch; add new ones as they appear.
+- **AI agents:** continuous auditing (checking invoices, payments and reports as they happen) is the long-term
+  engine. The bottleneck is data access and trust, not AI cost.
+- **First test:** Carlos's own workplace, approached through a problem the boss already has, not the full vision.
+
+## Method comparison (session 6)
+
+Carlos's approach (checked voice + shared gains) vs. four alternatives: fix the bottleneck (Goldratt),
+open-book management (Stack), fix management basics (Bloom et al.), employee ownership (ESOP).
+Recommendation: sequence them. Open with the bottleneck method checked by the Truth tool, add open
+books + a savings share, and end at the full voting + community model.

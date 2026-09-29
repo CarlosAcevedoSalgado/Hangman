@@ -83,7 +83,7 @@ figure svg{width:100%;height:auto;max-width:100%;color:var(--fg)}
 
 <div class="wrap">
   <header>
-    <span class="eyebrow">Session 5 · Your answers, my replies</span>
+    <span class="eyebrow">Session 6 · Your answers, my replies</span>
     <button class="help" id="helpBtn" aria-label="How this page works, or ask a question">?</button>
   </header>
   <div class="rail" id="rail" aria-hidden="true"></div>
@@ -118,76 +118,65 @@ figure svg{width:100%;height:auto;max-width:100%;color:var(--fg)}
 const SRC = s => `<div class="src">${s}</div>`;
 const CARDS = [
  {
-  "id": "s5-1",
+  "id": "s6-1",
+  "kind": "question",
+  "tag": "Your request · four methods from scratch",
+  "quote": "perfect, that gave me another idea so i have a method on how to make the biggest possitive inpact for workers and the service and or product a company makes. but it might be a better method can you formulate one from scratch on your own and compare it with my approach i would like to see the difference methods and approaches you come up with.",
+  "qlabel": "You wrote on card 1",
+  "html": "<h1>Four other ways to get the biggest impact for workers and products</h1>\n<p>I built these without starting from your approach. Each has a different <b>first move</b>, and that's the real difference between them.</p>\n<div class=\"tbl\"><table>\n<tr><th>Method</th><th>First move</th><th>How it works</th></tr>\n<tr><td><b>Yours · Checked voice + shared gains</b></td><td>Build trust</td><td>Employees propose the plan, AI checks every claim, employees vote, gains are shared by a locked formula and can go to the community.</td></tr>\n<tr><td><b>1 · Fix the bottleneck</b></td><td>Find the one constraint</td><td>Every company has one step that limits everything else. Find it, put everyone's improvement ideas on that one step, and share the savings. Repeat when the bottleneck moves.</td></tr>\n<tr><td><b>2 · Open the books</b></td><td>Teach the numbers</td><td>Teach every employee the company's financials. Each team picks one number it can move and runs small experiments. A bonus pays out when the company hits its one \"critical number.\"</td></tr>\n<tr><td><b>3 · Fix the basics</b></td><td>Audit management</td><td>Score the company on basic management practices (clear targets, tracking, fixing problems fast, rewarding performance) and fix the weakest ones first.</td></tr>\n<tr><td><b>4 · Employee ownership</b></td><td>Transfer shares</td><td>Employees own part or all of the company through a trust (an ESOP in the US). Alignment comes through ownership rather than votes.</td></tr>\n</table></div>\n<div class=\"src\">1: Goldratt &amp; Cox, The Goal (1984) · 2: Jack Stack, The Great Game of Business (1992) · 3: Bloom et al., QJE (2013); World Management Survey · 4: Kruse, Freeman &amp; Blasi, Shared Capitalism at Work (2010)</div>",
+  "prompt": "Which of these four surprised you, and why? (optional)"
+ },
+ {
+  "id": "s6-2",
+  "kind": "",
+  "tag": "Comparison · where each one wins",
+  "required": true,
+  "html": "<h1>Yours has the biggest mission. It's also the slowest to show a result.</h1>\n<div class=\"tbl\"><table>\n<tr><th></th><th>Yours</th><th>1 Bottleneck</th><th>2 Open books</th><th>3 Basics</th><th>4 Ownership</th></tr>\n<tr><td>First result</td><td>12+ months</td><td class=\"good\">1–3 months</td><td>6–12 months</td><td class=\"good\">3–6 months</td><td>Years</td></tr>\n<tr><td>Employees decide</td><td class=\"good\">A lot</td><td>A little</td><td>Some</td><td>Little</td><td class=\"good\">A lot (as owners)</td></tr>\n<tr><td>Strength of evidence</td><td>Parts tested separately; never as one package</td><td>Mostly case studies</td><td>Case studies, long track record</td><td class=\"good\">Randomized trial: ~17% productivity</td><td class=\"good\">Meta-analyses: small positive</td></tr>\n<tr><td>Checks leadership</td><td class=\"good\">Yes, the core</td><td>No</td><td>Partly (books are open)</td><td>No</td><td>Partly</td></tr>\n<tr><td>Helps the community</td><td class=\"good\">Built in</td><td>No</td><td>No</td><td>No</td><td>Indirectly</td></tr>\n<tr><td>Owner must give up</td><td>Some control</td><td class=\"good\">Nothing</td><td>Secrecy</td><td class=\"good\">Nothing</td><td class=\"bad\">Equity</td></tr>\n</table></div>\n<p><b>My recommendation: don't pick one; sequence them.</b> Open with method 1, which is fast, threatens nobody, and gives your boss a dollar figure. Use your Truth tool to check the numbers in it. Add open books and a savings share next. Your full model (voting and community) is where you end up, not where you start. By then there's a year of checked results backing it.</p>\n<p><b>Where yours is clearly better:</b> it's the only one that checks leadership and the only one with the community built in. That's your mission. The others are ways to get there.</p>",
+  "prompt": "Which method would your boss say yes to fastest, and why? Be specific about your boss."
+ },
+ {
+  "id": "s6-3",
   "kind": "conceded",
-  "tag": "Mostly right · one gap",
-  "quote": "well what im thinking is that our system or tool will ask for peoples intent/goal then it will check and show how aling they are because they might not be at first and later shows in results, or the other way around where they state a intent they have a plan as to how to do it but they lean so they have to adap because what matter is the intent and the goal not the how that what it will allow people to be flexible and work on plans that others came up because they belive that it will still serve the goal we just need to ensure that it shows that people cant manufature facts to show something that is not.",
-  "qlabel": "You wrote on card 2 (intent vs. stated reason)",
-  "html": "<h1>Fixed goal, flexible method. That idea has a name.</h1>\n<p>What you described (people commit to the goal, and the \"how\" can change as they learn) is what the military calls <b>commander's intent</b>. Leaders state the goal and why it matters, and the people doing the work adapt the method when plans meet reality. It's exactly what lets someone commit to a plan they didn't vote for.</p>\n<p>So the tool tracks two things separately: <b>Is the goal still the same?</b> (it should rarely change) and <b>Is the method working?</b> (it's fine to change, with the reason recorded).</p>\n<p><b>The gap:</b> you didn't answer the second half of the question, about what we promise customers. It matters because the promise has to be \"we check whether stated reasons are backed by evidence,\" never \"we catch liars.\" We can't see inside anyone's head. If we promise to, the first honest mistake we flag as a lie kills trust in the tool.</p>\n<p>Your last line is the real engineering problem: <b>people can't manufacture facts</b>. Card 6 covers it.</p>\n<div class=\"src\">US Army doctrine, ADP 6-0 Mission Command (2019), “commander's intent”</div>",
+  "tag": "New requirement · you found a real risk",
+  "quote": "the system should be able to intake these flags and check whether those claims are true and if they are it needs to show. this makes me think what if someone sets someone up we should be able to have a system that can not be manipulated so that it shows and could prevent from other people setting people up so they can get fired or other.",
+  "qlabel": "You wrote on card 4 (anonymous flags)",
+  "html": "<h1>A flag is a claim, not a verdict</h1>\n<p>You're right: an anonymous flag system can be used to set someone up. No system is impossible to manipulate. What works is making a false flag <b>useless</b>:</p>\n<div class=\"steps\">\n<div><b>1</b>A flag goes through the same evidence check as any other claim. No evidence, no finding.</div>\n<div><b>2</b>No action is ever taken on a flag alone.</div>\n<div><b>3</b>The person flagged sees the claim and the evidence, and gets to respond before anything is decided.</div>\n<div><b>4</b>A human reviews before any finding about a person.</div>\n<div><b>5</b>Every step is recorded so it can't be edited later, including who looked at what.</div>\n<div><b>6</b>Knowingly false reports are a violation, while honest mistakes are protected.</div>\n</div>\n<p>There's an international standard for exactly this: ISO 37002 on whistleblowing systems. It covers protecting both the reporter and the person reported.</p>\n<div class=\"src\">ISO 37002:2021, Whistleblowing management systems — Guidelines</div>",
+  "prompt": "Anything missing from the 6 rules? (optional)"
+ },
+ {
+  "id": "s6-4",
+  "kind": "conceded",
+  "tag": "I misread you",
+  "quote": "these have already been flagged as pottential issues so we need to ensure we count and solve for these, as new threat arrise we built on top of them and solve for them as they come thats what i was meaning. to solve all these threads now and then later for the other ones. my goal is to leverage the cheap AI there can be alot of agents doing things building software asking questions gathering infromation etc. connecting and keeping track of systems and numbers going trhough invioices to catch things etc.",
+  "qlabel": "You wrote on card 5 (threats)",
+  "html": "<h1>Got it: solve all the known threats now, new ones as they appear</h1>\n<p>That's the right rule, and I read your earlier answer wrong.</p>\n<p>Your AI-agents idea also has a name: <b>continuous auditing</b>. Instead of checking the books once a year, software checks every invoice, payment and report as it happens. Auditors have wanted this since the 1990s. What stopped it was cost, and cheap AI agents change that. You're right about that part.</p>\n<p><b>The catch:</b> AI cost is no longer the limit. <b>Access to the data</b> is. Agents can only check invoices they can see, and a company will only open its systems to someone it trusts. So trust comes before the agents, which is why the first step has to be small and safe.</p>\n<div class=\"src\">Vasarhelyi &amp; Halper, “The Continuous Audit of Online Systems,” Auditing: A Journal of Practice &amp; Theory (1991)</div>",
   "prompt": "Anything to add? (optional)"
  },
  {
-  "id": "s5-2",
+  "id": "s6-5",
   "kind": "conceded",
-  "tag": "Agreed · parked",
-  "quote": "im not sure i havent thought about how to solve this, this can be a later on problem to solve for the moment we need to focus on the first one. inside a company.",
-  "qlabel": "You wrote on card 3 (city-wide fund votes)",
-  "html": "<h1>Parked. Inside one company first.</h1>\n<p>Agreed. The city-wide fund only matters once several companies are running this. I've moved it to the \"later\" list in the project notes so it doesn't get lost, and we won't spend time on it now.</p>",
+  "tag": "Agreed · one warning from your own idea",
+  "quote": "i like the flat fee, if i know how much it cost me to provide the service and how much its worth for them for me to provide this service then i can provide it for that money and as long as its more than it cost me im profitable my goal will then be to provide it to as many companies as possible making it cheaper and cheaper for me to produce by creating infrastructure and efficiencies that will allow me to charge less wich will raise the bar for other to enter. but i also like to have open checking which is option  so both would be great. i like transparency.",
+  "qlabel": "You wrote on card 6 (who pays you)",
+  "html": "<h1>Flat fee plus open checking. Settled.</h1>\n<p>Both together is the strongest answer, and it's simple to explain to an employee: \"The company pays a fixed fee whatever the results say, and you can re-check every result yourself.\"</p>\n<p>Driving your costs down so you can charge less is a known strategy (cost leadership), and cheap AI makes it realistic.</p>\n<p><b>One warning, from your own first message:</b> you said to build the store in any neighborhood but keep it spotless, so people always see quality. That applies here. In a trust business, \"cheapest\" can read as \"cutting corners.\" Charge less, but spend visibly on trust signals: published methods, an outside reviewer, a clean record of corrections.</p>\n<div class=\"src\">Michael Porter, Competitive Strategy (1980), cost leadership</div>",
   "prompt": "Anything to add? (optional)"
  },
  {
-  "id": "s5-3",
-  "kind": "conceded",
-  "tag": "Agreed · the model is settled",
-  "quote": "well is a combination is to vote on the plan that ultimate will have an effect on the slice of budget and how to spend it. my idea is that people would want to do this disagree and commit because they have an interest to grow and make more money or better quality products or better work environment or better oportunities for work using the money the gains like a comunity that has a say as to where and what to do with that money that is gained.",
-  "qlabel": "You wrote on card 5 (the 4 steps)",
-  "html": "<h1>The inside-the-company model, as it stands now</h1>\n<div class=\"steps\">\n<div><b>1 · Propose</b>Employees suggest improvements and draft next year's plan</div>\n<div class=\"key\"><b>2 · Check</b>Each claim and stated goal is checked against evidence</div>\n<div><b>3 · Vote</b>Employees vote on the plan, which decides how the gains slice is spent</div>\n<div><b>4 · Approve</b>Leadership approves; the doers get yes/no on their items</div>\n<div><b>5 · Commit</b>Everyone commits, including those who voted no</div>\n<div class=\"key\"><b>6 · Track</b>What actually went up and down, shown to everyone</div>\n<div><b>7 · Share</b>Gains are split by the formula locked before step 3</div>\n</div>\n<p>Your reason people will commit: they share in what the gains buy, whether that's money, better products, a better workplace, or something for the community. I agree, as long as step 7 is guaranteed in writing before step 3. Blue steps are what your software does.</p>",
-  "prompt": "Anything wrong in these 7 steps? (optional)"
- },
- {
-  "id": "s5-4",
+  "id": "s6-6",
   "kind": "question",
-  "tag": "Your answer is evidence",
-  "quote": "we do not have a way to raise a flag.",
-  "qlabel": "You wrote on card 6 (a safe way to raise a flag)",
-  "html": "<h1>No way to raise a flag: that's a gap you've seen firsthand</h1>\n<p>Tips are the most common way fraud gets caught. A company with no safe way to raise one is missing its best early warning. So an <b>anonymous flag</b> belongs in version 1 of the Truth tool: anyone can say \"this claim looks wrong,\" and the tool checks it against the evidence without revealing who asked.</p>\n<p>It's also a sales argument. Public companies in the US are already required to have an anonymous channel for accounting complaints (Sarbanes-Oxley, section 301). Many private companies don't have one at all.</p>\n<div class=\"src\">Sarbanes-Oxley Act of 2002, §301 (audit committees must set up confidential, anonymous submission of concerns)</div>",
-  "prompt": "If your workplace had an anonymous flag tool tomorrow, would people use it? What would stop them? (optional)"
- },
- {
-  "id": "s5-5",
-  "kind": "correction",
-  "tag": "Correction · some can't wait",
-  "quote": "we need to ensure that is also solved and accounted for so that we can solve for those issues and account for those scenarios eventually keep building for scenarios that pop up and solving them and taclking them one by one.",
-  "qlabel": "You wrote on card 7 (four threats)",
-  "html": "<h1>Fixing problems as they come up works for some of these, not all</h1>\n<p>For two of the four threats, \"solve them one by one as they appear\" would be too late. By the time you see them, trust is already broken.</p>\n<div class=\"tbl\"><table>\n<tr><th>Threat</th><th>When to handle it</th><th>Why</th></tr>\n<tr><td>Fear of speaking up</td><td><b>Before launch</b></td><td>If the first person who raises a flag gets punished, nobody raises a second one. You'll never see the problem, only the silence.</td></tr>\n<tr><td>Gaming the numbers</td><td><b>Before launch</b></td><td>Once money is tied to a number, people start pushing it right away. Pick several measures from the start.</td></tr>\n<tr><td>Free-riding</td><td>As it appears</td><td>You can see it in results and fix the process.</td></tr>\n<tr><td>Vote fatigue</td><td>As it appears</td><td>Turnout numbers show it; cut the number of votes.</td></tr>\n</table></div>",
-  "prompt": "Agree with the split? (optional)"
- },
- {
-  "id": "s5-6",
-  "kind": "push",
-  "tag": "Pushback · profit share makes it worse",
+  "tag": "Carried forward · still need this",
   "required": true,
-  "quote": "i would want to ask for share of profit, that way its in my best interest that the company succed and the goal is that employes take ownership and are more proactive on tasks resulting in a better company that produces better quality products or services and its better for its comunity for its employees. it needs to be a way that it will make sence that we earn money because of the service we provide whoever pay for that and it should be illigal to not do what im saying im doing my job will be to tell the truth thats what the service or product we want to offer no matter who pays that will not change the results and we should have a way to confirm that is true we should have a way to back it up, a way to show how its all trust workthy maybe blockchain etc ways to show that its not just us but the facts and evidence that prove it.",
-  "qlabel": "You wrote on card 8 (who pays you)",
-  "html": "<h1>A profit share makes the independence problem bigger, not smaller</h1>\n<p>If you earn more when the company's numbers look good, you have a reason to let bad numbers slide. That's exactly why US rules <b>ban auditors from taking contingent fees</b> (fees that depend on results) from the companies they audit. \"It should be illegal not to tell the truth\" is already the law for auditors, and this ban is one of the ways the law enforces it.</p>\n<p><b>Where you're right:</b> the proof can't be \"trust us.\" It has to be evidence anyone can check. Blockchain can prove a record wasn't changed after it was saved. It <i>can't</i> prove the number was true when it went in. A simpler version (each record locked with a fingerprint of the one before, so any later edit shows) does the same job without a blockchain.</p>\n<p>Two ways to keep a profit share and stay credible:</p>\n<div class=\"tbl\"><table>\n<tr><th>Option</th><th>How it works</th></tr>\n<tr><td><b>A · Split the jobs</b></td><td>Flat fee for the Truth checking. Your profit share is measured by someone else (the company's existing outside auditor), so you never grade your own homework.</td></tr>\n<tr><td><b>B · Open checking</b></td><td>Your checking rules and evidence are published, so employees or any third party can re-run every check and get the same answer.</td></tr>\n</table></div>\n<div class=\"src\">AICPA Code of Professional Conduct, Contingent Fees rule (ET 1.510) · SEC auditor independence rules, 17 CFR 210.2-01(c)(5)</div>",
-  "prompt": "Pick A, B, both, or neither, and say why. What would you tell an employee who asks 'Why should I trust you if the company pays you?'"
+  "quote": "im open to bringing it up to my boss, to try it in this company.",
+  "qlabel": "You wrote on card 7 (first test)",
+  "html": "<h1>Your workplace first. Then the approach depends on one answer.</h1>\n<p>Good. As I said in chat: don't pitch the whole vision. Pick a problem your boss already has, run a small, free, time-limited test on your own work first, and let the results do the talking.</p>\n<p>Which method to open with (card 2) depends on what your boss already cares about. If it's jobs running late or margins shrinking, open with the bottleneck method. If it's \"people don't care about costs,\" open with open books. If it's \"our reports don't match reality,\" open with the Truth tool.</p>\n<p>I asked this in chat and it's still unanswered, so it's required here.</p>",
+  "prompt": "What's the problem your boss complains about most often? Give a real example if you can."
  },
  {
-  "id": "s5-7",
-  "kind": "question",
-  "tag": "First customer",
-  "required": true,
-  "quote": "my goal would be a whole company.",
-  "qlabel": "You wrote on card 9 (first customer)",
-  "html": "<h1>A whole company works. Just a smaller one first.</h1>\n<p>Agreed on \"whole company\": it keeps the model intact and avoids one department feeling watched while others aren't. The trade-off is size. A company of Humana's or UPS's size takes 6–18 months to approve anything and involves unions and legal teams.</p>\n<p><b>My suggestion:</b> a whole company of about <b>100–500 employees</b>, owner-led, rooted in Louisville. One owner can say yes, and results show within a year. That becomes the case study you take to the big names.</p>\n<p>You also told me your own workplace has no way to raise a flag. That makes it a possible first test, and a risky one: you'd be checking your own bosses.</p>",
-  "prompt": "Should the first test be your own workplace, or a company you don't work for? Explain your choice."
- },
- {
-  "id": "s5-8",
+  "id": "s6-7",
   "kind": "",
   "tag": "Next",
-  "html": "<h1>Where we are, and what I'd build next</h1>\n<p><b>Settled:</b> what the business is (a third-party trust service), how it works inside one company (the 7 steps), the minimum version (Truth tool built; forms and a signed formula for the rest), and that the first customer is a whole company.</p>\n<p><b>Open:</b> how you get paid without losing independence (card 6), and who the first customer is (card 7).</p>\n<p><b>Next step I'd propose:</b> build a working prototype of the Truth tool. You paste in a plan, it pulls out each claim and stated goal, checks them against the evidence you give it, and shows what's supported, what isn't, and what's missing. Each check gets a tamper-evident record. You could show it to a business owner in a meeting.</p>",
-  "prompt": "Build the prototype next, or settle cards 6 and 7 first? (optional)"
+  "html": "<h1>What happens after this session</h1>\n<p>Once I know your boss's biggest complaint, I'll build the first prototype around it: a small tool that takes a real report or plan, pulls out each claim, checks it against the numbers you give it, and shows what's supported, what isn't, and what's missing. Each check gets a record that can't be quietly edited.</p>\n<p>You'd test it on your own work first, then show your boss.</p>",
+  "prompt": "Anything I didn't ask that matters to you? (optional)"
  }
 ];
 
@@ -228,7 +217,7 @@ function queueSave(c){ clearTimeout(saveTimer); saveTimer = setTimeout(() => sav
 async function save(c){
   if(!db) return;
   try{
-    await db.doc("responses/"+c.id).set({card:c.id, session:5, tag:c.tag, prompt:c.prompt, text:answers[c.id]||"", updatedAt:new Date().toISOString()});
+    await db.doc("responses/"+c.id).set({card:c.id, session:6, tag:c.tag, prompt:c.prompt, text:answers[c.id]||"", updatedAt:new Date().toISOString()});
     $("status").textContent = `${i+1} / ${CARDS.length} · saved`;
   }catch(e){ $("status").textContent = "Couldn't save. Your answer is still on screen; try again in a moment."; }
 }
