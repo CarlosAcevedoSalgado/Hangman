@@ -1,0 +1,6 @@
+idea,pain,advantage,entry_cost,time_to_rev,learnability,failure_cost,competition,evidence_notes
+GC bid leveling (compare sub bids / scope gaps),4,5,4,3,4,4,1,Crowded 2026: Procore/BuildingConnected/Bidi/Buildr all ship AI leveling
+Specialty-sub T&M + change-order capture (unbilled extra work),4,4,4,3,4,4,1,Crowded: eSUB/Rhumbix/Clearstory; industry claims 2-5% of T&M tags go unbilled
+AI-assisted certified translation for immigration docs (Ace Translate),3,4,5,5,4,3,2,Revenue possible in weeks; price competition; USCIS rejection = failure cost
+Construction submittal review AI,4,4,2,2,3,2,1,Very crowded: Trunk Tools/Procore/BuildSync/Nomic; approving wrong spec = liability
+Generic AI invoice/AP automation (any industry),4,1,3,2,3,3,0,Saturated horizontal market; no insider edge

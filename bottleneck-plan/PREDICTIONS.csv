@@ -1,0 +1,6 @@
+id,date_made,claim,probability,evidence_tier,due_date,outcome,brier_score,notes
+1,2026-09-29,Carlos completes 8+ Mom Test interviews by 2026-10-13,0.55,D,2026-10-13,,,never-starting risk is the main threat
+2,2026-09-29,15 interviews done by 2026-11-13,0.45,D,2026-11-13,,,
+3,2026-09-29,A problem with >=3 of 15 interviewees committing to a paid pilot is found by 2026-11-13,0.35,D,2026-11-13,,,
+4,2026-09-29,First paid concierge pilot (any amount) by 2026-12-31,0.30,D,2026-12-31,,,
+5,2026-09-29,$1M annual revenue run-rate by 2029-09-29,0.05,E,2029-09-29,,,speculative prior; revise after pilots
