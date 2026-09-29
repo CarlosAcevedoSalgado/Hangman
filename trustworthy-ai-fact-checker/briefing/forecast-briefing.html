@@ -1,0 +1,284 @@
+<title>Forecast and Trust Briefing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one card at a time, like a deck of index cards on a ledger; progress rail on top, ? always reachable. */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --fg:#17202e; --muted:#5a6678; --line:#d8dee8;
+  --accent:#2f4bb0; --accent-soft:#e3e8fa; --good:#1f7a4d; --warn:#a4620a; --bad:#b3372f;
+  --display:"Newsreader",Georgia,serif; --body:"Public Sans",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#10151d; --surface:#18202b; --fg:#e6ebf2; --muted:#98a3b4; --line:#2c3746;
+  --accent:#8ea4ff; --accent-soft:#233052; --good:#5cc592; --warn:#e3a54a; --bad:#f07c73; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10151d; --surface:#18202b; --fg:#e6ebf2; --muted:#98a3b4; --line:#2c3746;
+  --accent:#8ea4ff; --accent-soft:#233052; --good:#5cc592; --warn:#e3a54a; --bad:#f07c73; color-scheme:dark}
+*{box-sizing:border-box} [hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);margin:0}
+.wrap{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:16px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.help{border:1px solid var(--line);background:var(--surface);color:var(--fg);width:36px;height:36px;border-radius:50%;font:600 16px var(--body);cursor:pointer}
+.rail{display:flex;gap:4px}
+.rail span{flex:1;height:8px;border-radius:2px;background:var(--line)}
+.rail .done{background:var(--good)} .rail .cur{background:var(--accent)} .rail .need{background:transparent;border:2px solid var(--warn)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.card h1{font:600 clamp(24px,4vw,32px)/1.2 var(--display);margin:0;text-wrap:balance}
+.card p{margin:0;max-width:65ch}
+.tag{align-self:flex-start;font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+.tag.conceded{background:transparent;border:1px solid var(--good);color:var(--good)}
+.tag.correction{background:transparent;border:1px solid var(--warn);color:var(--warn)}
+.tag.question{background:var(--accent-soft);color:var(--accent)}
+.his{border-left:3px solid var(--line);padding:4px 0 4px 14px;display:flex;flex-direction:column;gap:6px}
+.his p{color:var(--muted);font-size:15px;max-width:65ch}
+.tag.push{background:transparent;border:1px solid var(--bad);color:var(--bad)}
+.src{font:12px/1.5 var(--mono);color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;counter-reset:s}
+.steps div{border:1px solid var(--line);border-radius:6px;padding:10px;font-size:14px}
+.steps b{display:block;font:500 12px var(--mono);color:var(--accent)}
+.steps .key{border-color:var(--accent);background:var(--accent-soft)}
+.range{position:relative;height:56px;margin:8px 0 4px}
+.range .axis{position:absolute;left:0;right:0;top:26px;height:2px;background:var(--line)}
+.range .band{position:absolute;top:18px;height:18px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:3px}
+.range .zero{position:absolute;top:8px;width:2px;height:40px;background:var(--bad)}
+.range .med{position:absolute;top:14px;width:3px;height:26px;background:var(--accent)}
+.range .lab{position:absolute;top:40px;font:11px var(--mono);color:var(--muted);transform:translateX(-50%);white-space:nowrap}
+.range .zl{top:-6px;color:var(--bad)}
+.bars{display:flex;flex-direction:column;gap:6px;font:13px var(--mono)}
+.bars div{display:grid;grid-template-columns:minmax(0,190px) 1fr 80px;gap:8px;align-items:center}
+.bars s{display:block;height:12px;background:var(--accent);border-radius:2px;text-decoration:none}
+.bars .top s{background:var(--warn)}
+.bars em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 12px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.good{color:var(--good)} .bad{color:var(--bad)}
+.ask{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--line);padding-top:14px}
+.ask label{font-weight:600}
+.ask .req{font:500 11px var(--mono);color:var(--warn);text-transform:uppercase;letter-spacing:.06em}
+textarea{width:100%;min-height:90px;font:15px/1.5 var(--body);padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);resize:vertical}
+textarea:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.hint{font-size:12px;color:var(--muted)}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px}
+nav button{font:600 15px var(--body);padding:10px 18px;border-radius:6px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+nav .next{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+nav button:disabled{opacity:.45;cursor:not-allowed}
+.status{font:12px var(--mono);color:var(--muted)}
+.panel{position:fixed;inset:0;background:rgba(10,14,20,.45);display:flex;align-items:flex-end;justify-content:center;padding:16px;z-index:5}
+.panel .sheet{background:var(--surface);border:1px solid var(--line);border-radius:10px;max-width:620px;width:100%;max-height:85vh;overflow:auto;padding:20px;display:flex;flex-direction:column;gap:12px;margin-bottom:env(safe-area-inset-bottom,0px)}
+.panel h2{font:600 22px var(--display);margin:0}
+.panel ul{margin:0;padding-left:18px}
+.quote{border-left:3px solid var(--accent);padding-left:10px;color:var(--muted);font-style:italic}
+.qbtn{position:absolute;z-index:4;font:600 13px var(--body);padding:6px 10px;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:var(--surface);cursor:pointer}
+figure{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+figure svg{width:100%;height:auto;max-width:100%;color:var(--fg)}
+.asked{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+@media (prefers-reduced-motion:no-preference){.card{animation:in .25s ease-out}@keyframes in{from{transform:translateY(6px)}to{transform:none}}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Session 4 · Your answers, my replies</span>
+    <button class="help" id="helpBtn" aria-label="How this page works, or ask a question">?</button>
+  </header>
+  <div class="rail" id="rail" aria-hidden="true"></div>
+  <div class="legend"><span><i style="background:var(--good)"></i>done</span><span><i style="background:var(--accent)"></i>current</span><span><i style="border:2px solid var(--warn)"></i>needs your answer</span><span><i style="background:var(--line)"></i>ahead</span></div>
+  <main id="card"></main>
+  <nav>
+    <button id="back">Back</button>
+    <span class="status" id="status"></span>
+    <button id="next" class="next">Next</button>
+  </nav>
+</div>
+
+<div class="panel" id="panel" hidden>
+  <div class="sheet" role="dialog" aria-labelledby="pt">
+    <h2 id="pt">How this page works</h2>
+    <ul>
+      <li>One idea per card. Use Next and Back.</li>
+      <li>Every card has a box. Most are optional. Cards marked <b>Required</b> keep Next locked until you've written a real answer (about 15 characters or more).</li>
+      <li>Your answers save automatically. Claude reads them next session and replies to each one.</li>
+      <li>Select any text on a card and tap <b>Ask about this</b> to quote it into a question here.</li>
+    </ul>
+    <div id="pq" class="quote" hidden></div>
+    <label for="qtext"><b>Your question</b> (about the content or about this page)</label>
+    <textarea id="qtext" placeholder="e.g. What does P10 mean again?"></textarea>
+    <nav><button id="pclose">Close</button><span class="status" id="qstatus"></span><button id="qsend" class="next">Save question</button></nav>
+    <div class="asked" id="asked"></div>
+  </div>
+</div>
+<button class="qbtn" id="qbtn" hidden>Ask about this</button>
+
+<script>
+const SRC = s => `<div class="src">${s}</div>`;
+const CARDS = [
+ {
+  "id": "s4-1",
+  "kind": "correction",
+  "tag": "Correction · you changed my definition",
+  "quote": "well i want to confirm that my hypothesis is correct that me providing this tool so that they can implement a system like that where employes get to have a say on their deparments and what to do next take ownership on improvements with the intent to make the business a higher quality product as well as better working conditions so that the employes can have a say as to where the money the gains are invested - the hope is to improve their comunities, better schools, better homes safer, better healthcare, better oportunities for thier kids. that could be done in different way and that is for the employes to come up with that. the intent is that the employees will all work toguether to make the company better by taking ownership because they now have a plan and vision as to what to do when it grows and it meets those metrics with the gains, it could be to improve a school or multiple schools but which employess will want to work hard to meet those metrics and they will want other to work as hard as them. so what we need to somehow build or solve for is how do we make that possible becuase the bigges challange is how do people trust that there wont be corruption how to we prevent corruption in an organization how could we use AI and create systems to eliminate corruption in an organization so that the other things can happen are there other things that could prevent that type of environment or community other than misstrust? how do we know when employes also have good intents the actions have to prove it and alling but it needs to be a third party like us that does this that checks the CEO and owners as well as the employes. that what im thinking.",
+  "qlabel": "You wrote on card 1 (fix my sentence)",
+  "html": "<h1>You're right: the core problem is trust, not voting</h1>\n<p>My sentence led with \"employees help decide the plan.\" Yours says that's the goal, but the thing that has to be solved first is <b>how people trust there won't be corruption</b>, from the CEO or from employees. And you want an outside party, you, checking both sides.</p>\n<p><b>New sentence:</b> A third-party trust service. An AI checks the claims and stated reasons behind company decisions, from leadership and employees alike, then tracks what actually changed. That makes it safe for employees to help plan and to decide how shared gains are used.</p>\n<p>You also asked: <i>what else besides mistrust could break this?</i> Card 7 answers that one.</p>",
+  "prompt": "Anything still wrong in the new sentence? (optional)"
+ },
+ {
+  "id": "s4-2",
+  "kind": "question",
+  "tag": "Question · what AI can and can't check",
+  "required": true,
+  "quote": "ai fact check is what im thinkin to build not the forecast results, so that whatever they are claming could be checked. the gains shared the employess will deside what to do with that based on what would be best for the company would they want to invest into something else like machinery, or a bonus, or a project for the comunity like a grant to the school to build a new gym or libary or park etc. they have to state their intent the AI system that wwe will build we check whetehr what they say they intent as an outcome alings otherwise it will say this doesnt match meaning that we can prevent people from lying about their intentions, they just want more money and thats okay as long as they state that clearly and not say we need bonuses because that is going to increase revenu, it might how? and our AI can fact check it to see if it matches with the data. if they say they want to try then they have a way to track it to see if it increases somehow it will tell them what improved, like costumer satisfaction, or employee satisfaction what went up and what went down.",
+  "qlabel": "You wrote on card 2 (which arrow breaks)",
+  "html": "<h1>AI can't read intentions. It can check whether the stated reasons hold up.</h1>\n<p>Your example is exactly right. Someone says \"we need bonuses because that will increase revenue.\" The AI can't know what they secretly want. What it <i>can</i> do is split the claim into three parts and check each:</p>\n<div class=\"steps\">\n<div><b>Goal</b>\"Increase revenue\"</div>\n<div><b>Link</b>\"Bonuses cause it.\" How? The AI asks for the mechanism and checks the data for evidence it works here.</div>\n<div class=\"key\"><b>Result</b>After, it tracks what actually went up and down: revenue, customer and employee satisfaction.</div>\n</div>\n<p>If someone says \"we just want bigger bonuses,\" that's honest and fine, as you said. The system flags a <b>mismatch</b> between the stated reason and the evidence. It doesn't flag the wish itself.</p>\n<p><b>Conceded:</b> forecasting isn't the product. Checking claims, then tracking what moved, is.</p>",
+  "prompt": "In your own words: what's the difference between checking someone's intent and checking their stated reason? Why does it matter for what we promise customers?"
+ },
+ {
+  "id": "s4-3",
+  "kind": "question",
+  "tag": "Carried forward · you skipped this",
+  "quote": "yes this is correct this is the ultimate mission of what we will like to acomplish overal",
+  "qlabel": "You wrote on card 3 (who decides the shared fund)",
+  "html": "<h1>Agreed on the mission. The question underneath is still open.</h1>\n<p>On card 2 you partly answered it: <b>employees decide</b> what to do with the gains, whether machinery, bonuses, or a grant for a school gym, library or park.</p>\n<p>The city-wide fund is different. It pools money from several companies. If each company's employees vote separately, a big employer's workers could outvote everyone else's, or the fund could split into pieces too small to build anything.</p>",
+  "prompt": "For the city-wide fund: does each company's employees get votes by headcount, equally per company, or something else? (optional)"
+ },
+ {
+  "id": "s4-4",
+  "kind": "conceded",
+  "tag": "Agreed",
+  "quote": "exactly! we need to build the tool that creates and makes this trust seamles and easy to setup we will charge to provide this tool or service.",
+  "qlabel": "You wrote on card 4 (lock the formula first)",
+  "html": "<h1>So the product is: making trust easy to set up</h1>\n<p>Agreed, and it's a clear product sentence. What you'd sell is a <b>setup that takes weeks, not years</b>: the sharing formula written and locked, the claim-checking running, and the results dashboard in place before the first vote.</p>\n<p>That also tells us what \"done\" means for version 1: a company can go from zero to its first checked, locked plan within one planning cycle.</p>",
+  "prompt": "Anything to add? (optional)"
+ },
+ {
+  "id": "s4-5",
+  "kind": "conceded",
+  "tag": "You changed my mind · governance",
+  "quote": "yes that is correct i want to start with the truth how to do that the best way possible how to solve for that, but at the same time i feel that i can build all of it at once that is the thing that is needed or how would you propose we work towards the main objective of the mission. we need these 3 elements to make it happen right wich ones can we live witout what is the bare minimum? because what im thinking is that employess can sugest improvemetna nd build the next year plan for leadership to approve the ones that they think will work and at the end leadership runs with the ultimate plan that they think will go and the employes will have a way to provide their imput and say yay or nay on certain things specially certain roles that will be responsible to do the work they should have a say, that way the have responsibility its their plan and the idea is that even if you did not vote for that plan yourself as an employee its in your best interest to still help to ensure that plan it will work because wining means that everyone wins.",
+  "qlabel": "You wrote on card 5 (build one piece first)",
+  "html": "<h1>Your planning model is better than mine</h1>\n<p>I had employees voting on a slice of the budget. Yours is more realistic and easier to sell:</p>\n<div class=\"steps\">\n<div><b>1</b>Employees suggest improvements and draft next year's plan</div>\n<div><b>2</b>Leadership approves the ones it thinks will work</div>\n<div class=\"key\"><b>3</b>The people who'll do the work get a yes/no on the items that affect them</div>\n<div><b>4</b>Everyone commits to the final plan, even those who voted no</div>\n</div>\n<p>Step 4 has a name in management: <b>\"disagree and commit\"</b> (Andy Grove at Intel; later one of Amazon's leadership principles). Leaders keep final authority, so boards and fiduciary duty stop being a problem. The minimum version is on card 9.</p>\n<div class=\"src\">Andrew Grove, High Output Management (1983) · Amazon Leadership Principles, “Have Backbone; Disagree and Commit”</div>",
+  "prompt": "Anything I got wrong in the 4 steps? (optional)"
+ },
+ {
+  "id": "s4-6",
+  "kind": "",
+  "tag": "Answer · what else breaks trust",
+  "html": "<h1>Corruption has a formula, and your system attacks all three parts</h1>\n<p>A widely used anti-corruption formula (Klitgaard): <b>Corruption = Monopoly + Discretion − Accountability.</b></p>\n<div class=\"tbl\"><table>\n<tr><th>Part</th><th>What it means</th><th>Your system's answer</th></tr>\n<tr><td>Monopoly</td><td>One person or group controls the decision</td><td>Employees propose; the doers get a yes/no</td></tr>\n<tr><td>Discretion</td><td>They can decide however they like, with no fixed rules</td><td>Sharing formula locked before the vote</td></tr>\n<tr><td>Accountability</td><td>Nobody checks afterward</td><td>An outside AI check on claims + results tracking, for everyone</td></tr>\n</table></div>\n<p>One more fact for your pitch: in fraud cases worldwide, <b>tips from employees</b> are the most common way fraud gets caught, ahead of audits. A safe way to raise a flag belongs in the product.</p>\n<div class=\"src\">Robert Klitgaard, Controlling Corruption (Univ. of California Press, 1988) · Association of Certified Fraud Examiners, Report to the Nations (published every two years): tips are the leading detection method</div>",
+  "prompt": "Does your workplace have a way to raise a flag safely today? Does it work? (optional)"
+ },
+ {
+  "id": "s4-7",
+  "kind": "",
+  "tag": "Answer · other things that break it",
+  "html": "<h1>Four threats besides mistrust</h1>\n<div class=\"tbl\"><table>\n<tr><th>Threat</th><th>What happens</th><th>Known counter</th></tr>\n<tr><td>Free-riding</td><td>Gains are shared by everyone, so some people coast</td><td>Research on shared-reward firms found coworkers do step in against slacking. Your instinct holds, but it needs a fair process, not pressure.</td></tr>\n<tr><td>Fear</td><td>People won't speak up if their boss can punish them</td><td>\"Psychological safety\": leaders must visibly reward bad news</td></tr>\n<tr><td>Gaming the numbers</td><td>Once a metric earns money, people push the number, not the real thing</td><td>Track several measures together (Goodhart's law)</td></tr>\n<tr><td>Fatigue</td><td>Too many votes and people stop caring</td><td>Vote only on items that affect your own work (your step 3)</td></tr>\n</table></div>\n<div class=\"src\">Kruse, Freeman &amp; Blasi, Shared Capitalism at Work (NBER, 2010), on coworker monitoring · Amy Edmondson, The Fearless Organization (2018) · Charles Goodhart (1975)</div>",
+  "prompt": "Which of these four have you actually seen at work? (optional)"
+ },
+ {
+  "id": "s4-8",
+  "kind": "push",
+  "tag": "Pushback · a problem you haven't solved",
+  "required": true,
+  "html": "<h1>If the company pays you, how can you be the independent checker?</h1>\n<p>This is the exact problem auditors have. In the Enron scandal (2001), Enron's auditor, Arthur Andersen, was also earning large consulting fees from Enron. It went along with the fraud, and the firm collapsed. Afterward, US law (Sarbanes-Oxley, 2002) limited the extra services an auditor can sell to a company it audits.</p>\n<p>You want to check the CEO, but in your model the CEO's company signs your check. Employees will ask about that on day one.</p>\n<p>Real options: employees or a community fund pay part of the fee · the check rules are published and anyone can re-run them · an outside board watches you · you never sell other consulting to the companies you check.</p>\n<div class=\"src\">Sarbanes-Oxley Act of 2002, Title II (auditor independence) · US v. Arthur Andersen (2002)</div>",
+  "prompt": "Who pays you, and what stops you from going easy on the customer who pays?"
+ },
+ {
+  "id": "s4-9",
+  "kind": "",
+  "tag": "The bare minimum",
+  "html": "<h1>Version 1: one piece of software, two things on paper</h1>\n<div class=\"tbl\"><table>\n<tr><th>Piece</th><th>Version 1</th><th>Why that's enough</th></tr>\n<tr><td><b>Truth</b></td><td><b>Software you build:</b> paste a plan or proposal, get each claim and stated reason checked against the company's data, with sources. Then a simple before/after results tracker.</td><td>Nobody else offers this. It's the thing you're best placed to build.</td></tr>\n<tr><td><b>Voice</b></td><td>Off-the-shelf forms (Microsoft Forms, Google Forms) for suggestions and yes/no votes</td><td>Voting software already exists; don't build it yet</td></tr>\n<tr><td><b>Shared win</b></td><td>A signed one-page agreement: the sharing formula, locked before the vote</td><td>It's a promise, not software</td></tr>\n</table></div>\n<p>So you don't need all three built. You need Truth built and the other two <i>set up</i>. Build them into software later, once a real company shows you what's missing.</p>",
+  "prompt": "Still unanswered from earlier: is your first customer a whole company, or one department or plant inside one? (optional)"
+ }
+];
+
+let i = 0, db = null;
+const answers = {}; const visited = new Set([0]);
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ok = c => !c.required || (answers[c.id] || "").trim().length >= 15;
+let saveTimer = null;
+
+function render(){
+  const c = CARDS[i];
+  $("card").innerHTML = `<article class="card" id="cardEl">
+    <span class="tag ${c.kind||""}">${c.tag}</span>${c.quote?`<div class="his"><span class="eyebrow">${c.qlabel}</span><p>${esc(c.quote)}</p></div>`:""}${c.html}
+    <div class="ask"><label for="ans">${c.prompt}</label>
+      ${c.required?'<span class="req">Required to continue</span>':""}
+      <textarea id="ans" placeholder="Type here…">${esc(answers[c.id]||"")}</textarea>
+      <span class="hint" id="hint"></span></div></article>`;
+  $("ans").addEventListener("input", e => { answers[c.id] = e.target.value; gate(); queueSave(c); });
+  gate(); drawRail();
+  $("back").disabled = i === 0;
+  $("next").textContent = i === CARDS.length - 1 ? "Finish" : "Next";
+  window.scrollTo({top:0});
+}
+function gate(){
+  const c = CARDS[i], len = (answers[c.id]||"").trim().length;
+  $("next").disabled = !ok(c);
+  $("hint").textContent = c.required && len < 15 ? `${15-len} more characters to unlock Next` : "";
+}
+function drawRail(){
+  $("rail").innerHTML = CARDS.map((c,k) => {
+    let cls = k === i ? "cur" : (visited.has(k) && ok(c) ? "done" : (c.required && !ok(c) ? "need" : ""));
+    return `<span class="${cls}"></span>`;
+  }).join("");
+  $("status").textContent = `${i+1} / ${CARDS.length}`;
+}
+function queueSave(c){ clearTimeout(saveTimer); saveTimer = setTimeout(() => save(c), 900); }
+async function save(c){
+  if(!db) return;
+  try{
+    await db.doc("responses/"+c.id).set({card:c.id, session:4, tag:c.tag, prompt:c.prompt, text:answers[c.id]||"", updatedAt:new Date().toISOString()});
+    $("status").textContent = `${i+1} / ${CARDS.length} · saved`;
+  }catch(e){ $("status").textContent = "Couldn't save. Your answer is still on screen; try again in a moment."; }
+}
+$("next").onclick = async () => {
+  const c = CARDS[i]; clearTimeout(saveTimer); await save(c);
+  if(i < CARDS.length-1){ i++; visited.add(i); render(); }
+  else { $("status").textContent = "Done. Claude will reply to each answer next session."; drawRail(); }
+};
+$("back").onclick = () => { if(i>0){ clearTimeout(saveTimer); save(CARDS[i]); i--; render(); } };
+
+// Help panel + questions
+let quote = "";
+function openPanel(){ $("panel").hidden = false; $("pq").hidden = !quote; $("pq").textContent = quote ? `“${quote}”` : ""; $("qtext").focus(); }
+$("helpBtn").onclick = () => { quote = ""; openPanel(); };
+$("pclose").onclick = () => { $("panel").hidden = true; };
+$("panel").addEventListener("click", e => { if(e.target.id === "panel") $("panel").hidden = true; });
+$("qsend").onclick = async () => {
+  const text = $("qtext").value.trim(); if(!text && !quote) return;
+  const entry = {card:CARDS[i].id, quote, text, at:new Date().toISOString()};
+  const li = document.createElement("div"); li.textContent = (quote?`“${quote}” — `:"") + text; $("asked").prepend(li);
+  $("qtext").value = ""; quote = ""; $("pq").hidden = true;
+  if(!db){ $("qstatus").textContent = "Shown here only; saving isn't available in this view."; return; }
+  try{ await db.collection("questions").doc().set(entry); $("qstatus").textContent = "Saved. Claude will answer it."; }
+  catch(e){ $("qstatus").textContent = "Couldn't save the question. Copy it into the card's box instead."; }
+};
+document.addEventListener("mouseup", showQ); document.addEventListener("touchend", () => setTimeout(showQ, 50));
+function showQ(e){
+  const sel = window.getSelection(), t = sel ? sel.toString().trim() : "";
+  const btn = $("qbtn");
+  if(e && e.target === btn) return;
+  if(!t || !$("cardEl") || !$("cardEl").contains(sel.anchorNode) || document.activeElement?.tagName === "TEXTAREA"){ btn.hidden = true; return; }
+  const r = sel.getRangeAt(0).getBoundingClientRect();
+  btn.style.top = (window.scrollY + r.bottom + 8) + "px";
+  btn.style.left = Math.max(16, Math.min(window.scrollX + r.left, window.innerWidth - 150)) + "px";
+  btn.hidden = false; btn.dataset.q = t.slice(0, 400);
+}
+$("qbtn").onclick = () => { quote = $("qbtn").dataset.q; $("qbtn").hidden = true; openPanel(); };
+
+render();
+(async () => {
+  db = await window.claude?.use?.("db") ?? null;
+  if(!db){ $("status").textContent += " · answers not saved in this view"; return; }
+  try{
+    const snap = await db.collection("responses").get();
+    snap.docs.forEach(d => { const v = d.data(); if(v && v.text) answers[d.id] = v.text; });
+    CARDS.forEach((c,k) => { if(answers[c.id]) visited.add(k); });
+    render();
+  }catch(e){}
+})();
+</script>

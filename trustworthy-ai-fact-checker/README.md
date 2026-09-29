@@ -33,7 +33,8 @@ proves the engine's value.
 7. [`docs/07-verifiable-leadership-claims.md`](docs/07-verifiable-leadership-claims.md) – how employees can trust what leadership tells them
 8. [`docs/08-pay-for-growth-pricing.md`](docs/08-pay-for-growth-pricing.md) – getting paid for results without betting your income on a coin flip
 9. [`docs/09-master-plan.md`](docs/09-master-plan.md) – the staged plan, gates, and where I disagree with the vision
-10. [`ROADMAP.md`](ROADMAP.md) – what to build and validate, in order
+10. [`docs/10-definition-v2.md`](docs/10-definition-v2.md) – **current definition** after your feedback (read this first)
+11. [`ROADMAP.md`](ROADMAP.md) – what to build and validate, in order
 
 ## Tools you can run now (Python 3, no installs)
 
