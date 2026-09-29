@@ -29,7 +29,16 @@ proves the engine's value.
 3. [`docs/03-cost-model.md`](docs/03-cost-model.md) – the "$10 becomes 1 cent" math, and where it doesn't hold
 4. [`docs/04-business-model.md`](docs/04-business-model.md) – the employee-voice service, customers, pricing, prior art
 5. [`docs/05-risks-and-open-questions.md`](docs/05-risks-and-open-questions.md) – pushback, unknowns, things to validate
-6. [`ROADMAP.md`](ROADMAP.md) – what to build and validate, in order
+6. [`docs/06-forecasting-and-experiments.md`](docs/06-forecasting-and-experiments.md) – forecast, test, score, adapt (with literature)
+7. [`docs/07-verifiable-leadership-claims.md`](docs/07-verifiable-leadership-claims.md) – how employees can trust what leadership tells them
+8. [`docs/08-pay-for-growth-pricing.md`](docs/08-pay-for-growth-pricing.md) – getting paid for results without betting your income on a coin flip
+9. [`docs/09-master-plan.md`](docs/09-master-plan.md) – the staged plan, gates, and where I disagree with the vision
+10. [`ROADMAP.md`](ROADMAP.md) – what to build and validate, in order
+
+## Tools you can run now (Python 3, no installs)
+
+- `python3 sim/forecast.py` – Monte Carlo forecast of a proposal + your pay-for-growth fee
+- `python3 sim/brier.py sim/predictions.csv` – scores a prediction log (who forecasts well?)
 
 ## Status
 

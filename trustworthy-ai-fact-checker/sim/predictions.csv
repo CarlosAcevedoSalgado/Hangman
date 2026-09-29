@@ -1,0 +1,8 @@
+who,claim,probability,outcome
+CEO,Q3 revenue grows >5% year over year,0.80,1
+CEO,New plant opens by June,0.90,0
+CEO,Turnover falls below 12% this year,0.70,1
+Ops director,Line 3 downtime drops 25% within 6 months,0.60,1
+Ops director,Supplier switch saves $400K,0.75,0
+Employee proposal team,Kaizen program saves $150K in year one,0.65,1
+Employee proposal team,Safety incidents fall 20%,0.55,

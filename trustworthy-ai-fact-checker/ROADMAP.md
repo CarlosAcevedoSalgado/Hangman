@@ -11,6 +11,8 @@
 - [ ] Evaluate on a public labelled dataset (e.g. FEVER sample); record accuracy, calibration, cost/claim
 - [ ] Replace assumptions in `docs/03-cost-model.md` with measured numbers
 - [ ] Demo: paste a proposal, get a fact-checked brief with sources
+- [ ] Start your own prediction log in `sim/predictions.csv` today; score it monthly
+- [ ] Draft a measurement & verification plan template (modelled on IPMVP, see docs/08)
 
 ## Phase 2 – Pilot (months 3–12)
 - [ ] One site / department, one budget slice, one voting cycle
